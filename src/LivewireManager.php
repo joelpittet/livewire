@@ -223,10 +223,11 @@ HTML;
     {
         $jsonEncodedOptions = $options ? json_encode($options) : '';
 
-        $assetsUrl = config('livewire.asset_url') ?: rtrim($options['asset_url'] ?? '', '/');
+        $assetsUrl = config('livewire.asset_url') 
+            ?: rtrim($options['asset_url'] ?? '', config('app.asset_url'));
 
         $appUrl = config('livewire.app_url')
-            ?: rtrim($options['app_url'] ?? '', '/')
+            ?: rtrim($options['app_url'] ?? '', config('app.url'))
             ?: $assetsUrl;
 
         $jsLivewireToken = app()->has('session.store') ? "'" . csrf_token() . "'" : 'null';
